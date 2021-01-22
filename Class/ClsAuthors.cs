@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ShopBooks_2
 {
-    public class ClsAuthers : MainClass, Ioperations
+    public class ClsAuthors : MainClass, Ioperations
     {
         public List<Authors> _Authors;
         public void Add()

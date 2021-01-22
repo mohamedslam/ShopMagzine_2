@@ -17,23 +17,21 @@ namespace ShopBooks_2
             _clsClients.LoadData();
             LoadCarsShop();
         }
-        public ClsAuthers _clsAuthers = new ClsAuthers();
+        public ClsAuthors _clsAuthers = new ClsAuthors();
         public ClsClients _clsClients = new ClsClients();
-        public ClsBooks _clsBooks = new ClsBooks();
-        public CarsShop _MyCarShoping = new CarsShop();
-
-
+        public ClsBooks   _clsBooks = new ClsBooks();
+        public CartShoping _MyCarShoping = new CartShoping();
 
         public void LoadCarsShop()
         {
 
-            var data = new List<CarsShop>();
+            var data = new List<CartShoping>();
             int i = 3;
             _clsBooks.dt[i].ReadXml(_clsBooks._dbDirctory + "/" + _clsBooks._Files[i]);
 
             foreach (DataRow r in _clsBooks.dt[i].Rows)
             {
-                var item = new CarsShop()
+                var item = new CartShoping()
                 {
                     CarId = int.Parse(r["CarId"].ToString()),
                     Client=new Clients() {ClientId= int.Parse(r["ClientId"].ToString())},
@@ -86,11 +84,11 @@ namespace ShopBooks_2
             foreach (var itm in _MyCarShoping.Books)
                 _MyCarShoping.CostOf_AllBooks += itm.Price * itm.Count;
 
-            var GroupAuthar = from x in _MyCarShoping.Books
+            var GroupAuthors = from x in _MyCarShoping.Books
                               where x.BookType == Books.EBookType.Papers
                               group x by x.Authers.AuthorsId;
 
-            foreach (var k in GroupAuthar)
+            foreach (var k in GroupAuthors)
             {
                 int c = k.Count();
                 if (c > 1)
@@ -99,7 +97,7 @@ namespace ShopBooks_2
 
                     Console.WriteLine("\n<<<<<<<<<<<<<Congratulation You Have Gift Elctronic Book For Auther: " + k.FirstOrDefault().Authers.AutherName + ">>>>>>>>>>>>>");
                     var Authar_EBook_Gifts = from x in _clsBooks._booksGallary
-                                             where x.BookType == Books.EBookType.Elctronic && x.Authers.AuthorsId == AuthId
+                                             where x.BookType == Books.EBookType.Electronic && x.Authers.AuthorsId == AuthId
                                              select x;
                     Console.WriteLine("\n\n<<<<<<<<<<<<<< Select Book You Want>>>>>>>>>>>>\n");
                     foreach (var itm in Authar_EBook_Gifts)

@@ -4,13 +4,14 @@ using System.Text;
 
 namespace ShopBooks_2
 {
-   public class Books: MainClass
+   public class Books
     {
         public Books() { }
    
         public enum EBookType
         { 
-        Papers,Elctronic
+        Papers, Electronic
+
         }
         public int BookId;
         public string BookName;

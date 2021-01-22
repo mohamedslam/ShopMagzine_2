@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShopBooks_2
 {
- public   class Authors: MainClass
+ public   class Authors
     {
         public int AuthorsId;
         public string AutherName;

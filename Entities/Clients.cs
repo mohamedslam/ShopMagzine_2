@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShopBooks_2
 {
-   public class Clients:MainClass
+   public class Clients
     {
         
         public int ClientId;
